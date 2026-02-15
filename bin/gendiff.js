@@ -2,6 +2,7 @@
 
 const { Command } = require('commander');
 const program = new Command();
+const genDiff = require('../src/index.js');
 
 program
     .name('gendiff')
@@ -10,5 +11,6 @@ program
     .argument('<filepath1>')
     .argument('<filepath2>')
     .option('-f, --format [type]', 'output format')
+    .action((filepath1, filepath2) => { genDiff(filepath1, filepath2)})
 
 program.parse(process.argv);
