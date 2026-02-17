@@ -1,6 +1,26 @@
 const parseFilepath = require ('./parser.js');
 const _ = require('lodash');
 
+function formatStylish(fileDiff) {
+   const result = fileDiff.reduce((acc,item) =>{
+    if (item.type === 'removed'){
+        acc.push(`  - ${item.key}: ${item.value}`)
+    } 
+    else if (item.type === 'added') {
+        acc.push(`  + ${item.key}: ${item.value}`)
+    }
+    else if (item.type === 'unchanged') {
+        acc.push(`    ${item.key}: ${item.value}`)
+    }
+    else if (item.type === 'changed') {
+        acc.push(`  - ${item.key}: ${item.before}`)
+        acc.push(`  + ${item.key}: ${item.after}`)
+    }
+    return acc
+   },[])
+   return `{\n${result.join('\n')}\n}`
+}
+
 function genDiff(filepath1, filepath2) {
     const data1 = parseFilepath(filepath1);
     const data2 = parseFilepath(filepath2);
@@ -21,7 +41,9 @@ function genDiff(filepath1, filepath2) {
             }
         }
     }
-    return result
+    return formatStylish(result)
 }
+
+
 
 module.exports = genDiff;
