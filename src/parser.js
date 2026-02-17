@@ -1,16 +1,22 @@
 const fs = require('fs');
 const path = require('path');
+const yaml = require('js-yaml');
 
 
 function parseFilepath(filepath) {
   const absPath = path.resolve(process.cwd(), filepath);
   const ext = path.extname(absPath);
   const content = fs.readFileSync(absPath, 'utf-8');
-  if (ext !== '.json') {
+
+  let data;
+  if (ext === '.json') {
+    data = JSON.parse(content);
+  } else if (ext === '.yml' || ext === '.yaml') {
+    data = yaml.load(content);
+  } else {
     throw new Error(`Unsupported file format: ${ext}`);
   }
-  const data = JSON.parse(content);
-  return data;
+ return data;
 }
 
 module.exports = parseFilepath;

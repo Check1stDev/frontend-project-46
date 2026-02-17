@@ -23,3 +23,20 @@ test ('compares flat json files', () => {
 expect(result).toBe(expected)
 })
 
+test ('compares flat yaml files', () => {
+    const file1 = getFixturesPath('file1.yml');
+    const file2 = getFixturesPath('file2.yml');
+
+    const result = genDiff(file1,file2);
+
+    const expected = `{
+  - follow: false
+    host: hexlet.io
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
+}`;
+
+expect(result).toBe(expected)
+})
