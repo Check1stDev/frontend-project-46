@@ -1,4 +1,5 @@
 const genDiff = require('../src/index.js')
+const parseFilepath = require ('../src/parser.js');
 const path = require('path')
 
 const getFixturesPath = (filepath) => {
@@ -39,4 +40,34 @@ test ('compares flat yaml files', () => {
 }`;
 
 expect(result).toBe(expected)
-})
+});
+
+test ('test parser json', () => {
+    const file = getFixturesPath('file1.json');
+
+    const result = parseFilepath(file);
+
+    const expected = {
+        host: 'hexlet.io',
+        timeout: 50,
+        proxy: '123.234.53.22',
+        follow: false,
+        }
+
+expect(result).toEqual(expected)
+});
+
+test ('test parser yml', () => {
+    const file = getFixturesPath('file1.yml');
+
+    const result = parseFilepath(file);
+
+    const expected = {
+        host: 'hexlet.io',
+        timeout: 50,
+        proxy: '123.234.53.22',
+        follow: false,
+        }
+
+expect(result).toEqual(expected)
+});

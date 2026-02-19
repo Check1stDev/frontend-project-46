@@ -6,3 +6,5 @@ test:
 
 coverage:
 	npm run test:coverage
+
+.PHONY: lint test coverage
