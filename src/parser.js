@@ -1,6 +1,6 @@
-const fs = require('fs');
-const path = require('path');
-const yaml = require('js-yaml');
+import fs from 'fs';
+import path from 'path';
+import yaml from 'js-yaml';
 
 
 function parseFilepath(filepath) {
@@ -19,4 +19,4 @@ function parseFilepath(filepath) {
  return data;
 }
 
-module.exports = parseFilepath;
+export default parseFilepath;

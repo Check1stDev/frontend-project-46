@@ -1,4 +1,4 @@
-const _ = require("lodash")
+import _ from 'lodash';
 
 
 function formatPlain(fileDiff) {
@@ -41,4 +41,4 @@ function formatPlain(fileDiff) {
     return formatterP(fileDiff).join('\n')
 }
 
-module.exports = formatPlain
+export default formatPlain; 

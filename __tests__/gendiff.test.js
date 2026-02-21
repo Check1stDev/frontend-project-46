@@ -1,6 +1,11 @@
-const genDiff = require('../src/index.js')
-const parseFilepath = require ('../src/parser.js');
-const path = require('path')
+import path from 'path';
+import genDiff from '../src/index.js';
+import parseFilepath from '../src/parser.js';
+import { fileURLToPath } from 'url';
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const getFixturesPath = (filepath) => {
     return path.join(__dirname,'..','__fixtures__',filepath)

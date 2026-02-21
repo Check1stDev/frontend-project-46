@@ -1,6 +1,6 @@
-const formatPlain = require("./plain")
-const formatStylish = require("./stylish")
-const formatJson = require("./json")
+import formatPlain from "./plain.js";
+import formatStylish from "./stylish.js";
+import formatJson from "./json.js";
 
 const formatters = {
     stylish: formatStylish,
@@ -15,4 +15,4 @@ const format = (fileDiff, formatName) => {
    return formatters[formatName](fileDiff)
 }
 
-module.exports = format
+export default format;

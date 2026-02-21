@@ -1,6 +1,6 @@
-const parseFilepath = require ('./parser.js');
-const _ = require('lodash');
-const format = require('./formatters/index.js')
+import _ from 'lodash';
+import parseFilepath from './parser.js';
+import format from './formatters/index.js';
 
 
 function genDiff(filepath1, filepath2, formatName = 'stylish') {
@@ -36,4 +36,4 @@ function buildDiffThree(data1,data2) {
     return result
 }
 
-module.exports = genDiff;
+export default genDiff;

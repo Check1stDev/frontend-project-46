@@ -1,4 +1,4 @@
-const _ = require("lodash")
+import _ from 'lodash';
 
 function formatStylish(fileDiff, depth = 1) {
     const indent = ' '.repeat(((depth * 4)-2))
@@ -39,4 +39,4 @@ function stringify(value, depth = 1) {
     return `{\n${lines.join('\n')}\n${bracketIndent}}`
 }
 
-module.exports = formatStylish
+export default formatStylish;
