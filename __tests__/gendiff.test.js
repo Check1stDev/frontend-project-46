@@ -202,3 +202,130 @@ Property 'group3' was added with value: [complex value]`;
 
 expect(result).toBe(expected)
 })
+
+test ('test json formatter', () => {
+    const file1 = getFixturesPath('file1new.yml');
+    const file2 = getFixturesPath('file2new.yml');
+
+    const result = genDiff(file1,file2, 'json');
+
+    const expected = 
+    `[
+    {
+        "key": "common",
+        "type": "nested",
+        "children": [
+            {
+                "key": "follow",
+                "type": "added",
+                "value": false
+            },
+            {
+                "key": "setting1",
+                "type": "unchanged",
+                "value": "Value 1"
+            },
+            {
+                "key": "setting2",
+                "type": "removed",
+                "value": 200
+            },
+            {
+                "key": "setting3",
+                "type": "changed",
+                "before": true,
+                "after": null
+            },
+            {
+                "key": "setting4",
+                "type": "added",
+                "value": "blah blah"
+            },
+            {
+                "key": "setting5",
+                "type": "added",
+                "value": {
+                    "key5": "value5"
+                }
+            },
+            {
+                "key": "setting6",
+                "type": "nested",
+                "children": [
+                    {
+                        "key": "doge",
+                        "type": "nested",
+                        "children": [
+                            {
+                                "key": "wow",
+                                "type": "changed",
+                                "before": "",
+                                "after": "so much"
+                            }
+                        ]
+                    },
+                    {
+                        "key": "key",
+                        "type": "unchanged",
+                        "value": "value"
+                    },
+                    {
+                        "key": "ops",
+                        "type": "added",
+                        "value": "vops"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "key": "group1",
+        "type": "nested",
+        "children": [
+            {
+                "key": "baz",
+                "type": "changed",
+                "before": "bas",
+                "after": "bars"
+            },
+            {
+                "key": "foo",
+                "type": "unchanged",
+                "value": "bar"
+            },
+            {
+                "key": "nest",
+                "type": "changed",
+                "before": {
+                    "key": "value"
+                },
+                "after": "str"
+            }
+        ]
+    },
+    {
+        "key": "group2",
+        "type": "removed",
+        "value": {
+            "abc": 12345,
+            "deep": {
+                "id": 45
+            }
+        }
+    },
+    {
+        "key": "group3",
+        "type": "added",
+        "value": {
+            "deep": {
+                "id": {
+                    "number": 45
+                }
+            },
+            "fee": 100500
+        }
+    }
+]`;
+
+expect(result).toBe(expected)
+})

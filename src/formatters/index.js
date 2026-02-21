@@ -1,9 +1,11 @@
 const formatPlain = require("./plain")
 const formatStylish = require("./stylish")
+const formatJson = require("./json")
 
 const formatters = {
     stylish: formatStylish,
     plain: formatPlain,
+    json: formatJson,
 }
 
 const format = (fileDiff, formatName) => {
